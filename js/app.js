@@ -28,19 +28,19 @@ var pike = {
     this.cookiesPurchasedPerHr();
     for (var i = 0; i < this.hoursOfOperation.length; i++) {
       // create an element
-      var ulEl = document.createElement('ul');
-      console.log('ulEl is', ulEl);
+      var liEL = document.createElement('li');
+      console.log('liEL is', liEL);
       // give the element content
-      ulEl.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
-      console.log('ulEl with content', ulEl);
+      liEL.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
+      console.log('liEL with content', liEL);
       // append the element to the dom
-      shopList.appendChild(ulEl);
+      shopList.appendChild(liEL);
       // display daily total
       // if(i === this.hoursOfOperation.length - 1) {
-      //   var ulEl = document.createElement('ul');
+      //   var ulEl = document.createElement('li');
       //   ulEl.textContent = 'Total: ' + this.recordOfSalesPerHour[i] + ' cookies';
       //   ulEl.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
-      //   shopList.appendChild(ulEl);
+      //   shopList.appendChild(liEL);
      // }
     }
   }
@@ -70,19 +70,19 @@ var seaTac = {
     this.cookiesPurchasedPerHr();
     for (var i = 0; i < this.hoursOfOperation.length; i++) {
       // create an element
-      var ulEl = document.createElement('ul');
-      console.log('ulEl is', ulEl);
+      var liEL = document.createElement('li');
+      console.log('liEL is', liEL);
       // give the element content
-      ulEl.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
-      console.log('ulEl with content', ulEl);
+      liEL.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
+      console.log('liEL with content', liEL);
       // append the element to the dom
-      shopList.appendChild(ulEl);
+      shopList.appendChild(liEL);
       // display daily total
       // if(i === this.hoursOfOperation.length - 1) {
-      //   var ulEl = document.createElement('ul');
+      //   var ulEl = document.createElement('li');
       //   ulEl.textContent = 'Total: ' + this.recordOfSalesPerHour[i] + ' cookies';
       //   ulEl.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
-      //   shopList.appendChild(ulEl);
+      //   shopList.appendChild(liEL);
      // }
     }
   }
@@ -112,19 +112,19 @@ var seattle = {
     this.cookiesPurchasedPerHr();
     for (var i = 0; i < this.hoursOfOperation.length; i++) {
       // create an element
-      var ulEl = document.createElement('ul');
-      console.log('ulEl is', ulEl);
+      var liEL = document.createElement('li');
+      console.log('liEL is', liEL);
       // give the element content
-      ulEl.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
-      console.log('ulEl with content', ulEl);
+      liEL.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
+      console.log('liEL with content', liEL);
       // append the element to the dom
-      shopList.appendChild(ulEl);
+      shopList.appendChild(liEL);
       // display daily total
       // if(i === this.hoursOfOperation.length - 1) {
-      //   var ulEl = document.createElement('ul');
+      //   var ulEl = document.createElement('li');
       //   ulEl.textContent = 'Total: ' + this.recordOfSalesPerHour[i] + ' cookies';
       //   ulEl.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
-      //   shopList.appendChild(ulEl);
+      //   shopList.appendChild(liEL);
      // }
     }
   }
@@ -154,19 +154,19 @@ var capHill = {
     this.cookiesPurchasedPerHr();
     for (var i = 0; i < this.hoursOfOperation.length; i++) {
       // create an element
-      var ulEl = document.createElement('ul');
-      console.log('ulEl is', ulEl);
+      var liEL = document.createElement('li');
+      console.log('liEL is', liEL);
       // give the element content
-      ulEl.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
-      console.log('ulEl with content', ulEl);
+      liEL.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
+      console.log('liEL with content', liEL);
       // append the element to the dom
-      shopList.appendChild(ulEl);
+      shopList.appendChild(liEL);
       // display daily total
       // if(i === this.hoursOfOperation.length - 1) {
-      //   var ulEl = document.createElement('ul');
+      //   var ulEl = document.createElement('li');
       //   ulEl.textContent = 'Total: ' + this.recordOfSalesPerHour[i] + ' cookies';
       //   ulEl.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
-      //   shopList.appendChild(ulEl);
+      //   shopList.appendChild(liEL);
      // }
     }
   }
@@ -196,19 +196,19 @@ var alki = {
     this.cookiesPurchasedPerHr();
     for (var i = 0; i < this.hoursOfOperation.length; i++) {
       // create an element
-      var ulEl = document.createElement('ul');
-      console.log('ulEl is', ulEl);
+      var liEL = document.createElement('li');
+      console.log('liEL is', liEL);
       // give the element content
-      ulEl.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
-      console.log('ulEl with content', ulEl);
+      liEL.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
+      console.log('liEL with content', liEL);
       // append the element to the dom
-      shopList.appendChild(ulEl);
+      shopList.appendChild(liEL);
       // display daily total
       // if(i === this.hoursOfOperation.length - 1) {
-      //   var ulEl = document.createElement('ul');
+      //   var ulEl = document.createElement('li');
       //   ulEl.textContent = 'Total: ' + this.recordOfSalesPerHour[i] + ' cookies';
       //   ulEl.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
-      //   shopList.appendChild(ulEl);
+      //   shopList.appendChild(liEL);
      // }
     }
   }
@@ -221,3 +221,9 @@ var shops = [pike, seaTac, seattle, capHill, alki];
 for (var i = 0; i < shops.length; i++) {
   shops[i].render();
 }
+
+// var numbers = [10, 20, 30, 40] // sums to 100
+// var sum = 0;
+// for (var i = 0; i < numbers.length; i++) {
+//   sum += numbers[i]
+// }
