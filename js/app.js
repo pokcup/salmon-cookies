@@ -2,8 +2,70 @@
 
 // JS for Salmon Cookies
 
-var shopList = document.getElementById('shopList');
-var shopName = document.getElementById('shopName');
+var allShops = [];
+
+var salesTable = document.getElementById('salesTable');
+
+// var shopList = document.getElementById('shopList');
+// var shopName = document.getElementById('shopName');
+
+// Pat's Salmon Cookies constructor function
+
+
+function Shop(location, minCustomerPerHr, maxCustomerPerHr, avgCookiesPerCustomer, recordOfSalesPerHour) {
+  this.location = location;
+  this.minCustomerPerHr = minCustomerPerHr;
+  this.maxCustomerPerHr = maxCustomerPerHr;
+  this.avgCookiesPerCustomer = avgCookiesPerCustomer;
+  this.recordOfSalesPerHour = recordOfSalesPerHour;
+  this.hoursOfOperation = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+  this.randomCustomersPerHr = function (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min; 
+  };
+  this.cookiesPurchasedPerHr = function(customersPerHr, avgPerCustomer) {
+    this.recordOfSalesPerHour = [];
+    for(var i = 0; i <= 14; i++) {
+      this.recordOfSalesPerHour.push(Math.ceil(this.randomCustomersPerHr(this.minCustomerPerHr, this.maxCustomerPerHr), this.avgPerCustomer));
+    }
+  };
+  this.totalCookiesPerDay = function(hourlyArray) {
+    var sumTotal = 0;
+    for (var i = 0; i < hourlyArray.length; i++) {
+      sumTotal += hourlyArray[i];
+    }
+    return sumTotal;
+  };
+  this.render = function() {
+    // make a tr
+    var trEl = document.createElement('tr');
+    // create, content, append for "Shop Location"
+    var tdEl = document.createElement('td');
+    tdEl.textContent = this.location;
+    trEl.appendChild(tdEl);
+    // create, content, append for each hourly total
+    for (var i = 0; i < this.hoursOfOperation.length; i++) {
+      tdEl = document.createElement('td');
+      tdEl.textContent = this.recordOfSalesPerHour[i];
+      trEl.appendChild(tdEl);
+    }
+    // create, content, append for daily total
+    dEl = document.createElement('td');
+    tdEl.textContent = this.totalCookiesPerDay(this.recordOfSalesPerHour);
+    trEl.appendChild(tdEl);
+    // append the tr to the table
+    salesTable.appendChild(trEl);
+  };
+
+  allShops.push(this);
+}
+
+new Student('Sara', 'Haynes', 'Sara without an H', 'Seattle');
+new Student('Lillian', 'Gales', 'Lillian', 'Pawtucket');
+new Student('Paula', 'Cruz', 'Paula', 'Mt. Rainier');
+
+// for (var i = 0; i < shops.length; i++) {
+//   shops[i].render();
+// }
 
 // Pike location object literal
 var pike = {
