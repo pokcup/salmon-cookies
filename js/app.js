@@ -3,10 +3,11 @@
 // JS for Salmon Cookies
 
 var shopList = document.getElementById('shopList');
+var shopName = document.getElementById('shopName');
 
 // Pike location object literal
 var pike = {
-  name: 'Pike',
+  name: '1st and Pike',
   location: '1st and Pike',
   hoursOfOperation: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'],
   minCustomerPerHr: 23,
@@ -14,8 +15,6 @@ var pike = {
   avgCookiesPerCustomer: 6.3,
   recordOfSalesPerHour: [],
   randomCustomersPerHr: function(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min; 
   },
   cookiesPurchasedPerHr: function(customersPerHr, avgPerCustomer) {
@@ -26,15 +25,16 @@ var pike = {
   },
   render: function() {
     this.cookiesPurchasedPerHr();
+    var pikeUl = document.getElementById('pike');
     for (var i = 0; i < this.hoursOfOperation.length; i++) {
       // create an element
-      var liEL = document.createElement('li');
-      console.log('liEL is', liEL);
+      var liEl = document.createElement('li');
+      console.log('liEl is', liEl);
       // give the element content
-      liEL.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
-      console.log('liEL with content', liEL);
+      liEl.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
+      console.log('liEl with content', liEl);
       // append the element to the dom
-      shopList.appendChild(liEL);
+      pikeUl.appendChild(liEl);
       // display daily total
       // if(i === this.hoursOfOperation.length - 1) {
       //   var ulEl = document.createElement('li');
@@ -56,8 +56,6 @@ var seaTac = {
   avgCookiesPerCustomer: 1.2,
   recordOfSalesPerHour: [],
   randomCustomersPerHr: function(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min; 
   },
   cookiesPurchasedPerHr: function(customersPerHr, avgPerCustomer) {
@@ -68,6 +66,7 @@ var seaTac = {
   },
   render: function() {
     this.cookiesPurchasedPerHr();
+    var seaTac = document.getElementById('seaTac');
     for (var i = 0; i < this.hoursOfOperation.length; i++) {
       // create an element
       var liEL = document.createElement('li');
@@ -76,7 +75,7 @@ var seaTac = {
       liEL.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
       console.log('liEL with content', liEL);
       // append the element to the dom
-      shopList.appendChild(liEL);
+      seaTac.appendChild(liEL);
       // display daily total
       // if(i === this.hoursOfOperation.length - 1) {
       //   var ulEl = document.createElement('li');
@@ -90,7 +89,7 @@ var seaTac = {
 
 // Seattle Center location object literal
 var seattle = {
-  name: 'Seattle',
+  name: 'Seattle Center',
   location: 'Seattle Center',
   hoursOfOperation: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'],
   minCustomerPerHr: 11,
@@ -98,8 +97,6 @@ var seattle = {
   avgCookiesPerCustomer: 3.7,
   recordOfSalesPerHour: [],
   randomCustomersPerHr: function(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min; 
   },
   cookiesPurchasedPerHr: function(customersPerHr, avgPerCustomer) {
@@ -110,6 +107,7 @@ var seattle = {
   },
   render: function() {
     this.cookiesPurchasedPerHr();
+    var seattle = document.getElementById('seattle');
     for (var i = 0; i < this.hoursOfOperation.length; i++) {
       // create an element
       var liEL = document.createElement('li');
@@ -118,7 +116,7 @@ var seattle = {
       liEL.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
       console.log('liEL with content', liEL);
       // append the element to the dom
-      shopList.appendChild(liEL);
+      seattle.appendChild(liEL);
       // display daily total
       // if(i === this.hoursOfOperation.length - 1) {
       //   var ulEl = document.createElement('li');
@@ -140,8 +138,6 @@ var capHill = {
   avgCookiesPerCustomer: 2.3,
   recordOfSalesPerHour: [],
   randomCustomersPerHr: function(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min; 
   },
   cookiesPurchasedPerHr: function(customersPerHr, avgPerCustomer) {
@@ -152,6 +148,7 @@ var capHill = {
   },
   render: function() {
     this.cookiesPurchasedPerHr();
+    var capHill = document.getElementById('capHill');
     for (var i = 0; i < this.hoursOfOperation.length; i++) {
       // create an element
       var liEL = document.createElement('li');
@@ -160,7 +157,7 @@ var capHill = {
       liEL.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
       console.log('liEL with content', liEL);
       // append the element to the dom
-      shopList.appendChild(liEL);
+      capHill.appendChild(liEL);
       // display daily total
       // if(i === this.hoursOfOperation.length - 1) {
       //   var ulEl = document.createElement('li');
@@ -182,8 +179,6 @@ var alki = {
   avgCookiesPerCustomer: 4.6,
   recordOfSalesPerHour: [],
   randomCustomersPerHr: function(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min; 
   },
   cookiesPurchasedPerHr: function(customersPerHr, avgPerCustomer) {
@@ -194,6 +189,7 @@ var alki = {
   },
   render: function() {
     this.cookiesPurchasedPerHr();
+    var alki = document.getElementById('alki');
     for (var i = 0; i < this.hoursOfOperation.length; i++) {
       // create an element
       var liEL = document.createElement('li');
@@ -202,7 +198,7 @@ var alki = {
       liEL.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
       console.log('liEL with content', liEL);
       // append the element to the dom
-      shopList.appendChild(liEL);
+      alki.appendChild(liEL);
       // display daily total
       // if(i === this.hoursOfOperation.length - 1) {
       //   var ulEl = document.createElement('li');
