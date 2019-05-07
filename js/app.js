@@ -240,8 +240,6 @@ var alki = {
   }
 };
 
-
-
 var shops = [pike, seaTac, seattle, capHill, alki];
 
 for (var i = 0; i < shops.length; i++) {
