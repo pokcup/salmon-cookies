@@ -23,6 +23,26 @@ var pike = {
     for(var i = 0; i <= 14; i++) {
       this.recordOfSalesPerHour.push(Math.ceil(this.randomCustomersPerHr(this.minCustomerPerHr, this.maxCustomerPerHr), this.avgPerCustomer));
     }
+  },
+  render: function() {
+    this.cookiesPurchasedPerHr();
+    for (var i = 0; i < this.hoursOfOperation.length; i++) {
+      // create an element
+      var ulEl = document.createElement('ul');
+      console.log('ulEl is', ulEl);
+      // give the element content
+      ulEl.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
+      console.log('ulEl with content', ulEl);
+      // append the element to the dom
+      shopList.appendChild(ulEl);
+      // display daily total
+      // if(i === this.hoursOfOperation.length - 1) {
+      //   var ulEl = document.createElement('ul');
+      //   ulEl.textContent = 'Total: ' + this.recordOfSalesPerHour[i] + ' cookies';
+      //   ulEl.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
+      //   shopList.appendChild(ulEl);
+     // }
+    }
   }
 };
 
@@ -44,6 +64,26 @@ var seaTac = {
     this.recordOfSalesPerHour = [];
     for(var i = 0; i <= 14; i++) {
       this.recordOfSalesPerHour.push(Math.ceil(this.randomCustomersPerHr(this.minCustomerPerHr, this.maxCustomerPerHr), this.avgPerCustomer));
+    }
+  },
+  render: function() {
+    this.cookiesPurchasedPerHr();
+    for (var i = 0; i < this.hoursOfOperation.length; i++) {
+      // create an element
+      var ulEl = document.createElement('ul');
+      console.log('ulEl is', ulEl);
+      // give the element content
+      ulEl.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
+      console.log('ulEl with content', ulEl);
+      // append the element to the dom
+      shopList.appendChild(ulEl);
+      // display daily total
+      // if(i === this.hoursOfOperation.length - 1) {
+      //   var ulEl = document.createElement('ul');
+      //   ulEl.textContent = 'Total: ' + this.recordOfSalesPerHour[i] + ' cookies';
+      //   ulEl.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
+      //   shopList.appendChild(ulEl);
+     // }
     }
   }
 };
@@ -67,6 +107,26 @@ var seattle = {
     for(var i = 0; i <= 14; i++) {
       this.recordOfSalesPerHour.push(Math.ceil(this.randomCustomersPerHr(this.minCustomerPerHr, this.maxCustomerPerHr), this.avgPerCustomer));
     }
+  },
+  render: function() {
+    this.cookiesPurchasedPerHr();
+    for (var i = 0; i < this.hoursOfOperation.length; i++) {
+      // create an element
+      var ulEl = document.createElement('ul');
+      console.log('ulEl is', ulEl);
+      // give the element content
+      ulEl.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
+      console.log('ulEl with content', ulEl);
+      // append the element to the dom
+      shopList.appendChild(ulEl);
+      // display daily total
+      // if(i === this.hoursOfOperation.length - 1) {
+      //   var ulEl = document.createElement('ul');
+      //   ulEl.textContent = 'Total: ' + this.recordOfSalesPerHour[i] + ' cookies';
+      //   ulEl.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
+      //   shopList.appendChild(ulEl);
+     // }
+    }
   }
 };
 
@@ -88,6 +148,26 @@ var capHill = {
     this.recordOfSalesPerHour = [];
     for(var i = 0; i <= 14; i++) {
       this.recordOfSalesPerHour.push(Math.ceil(this.randomCustomersPerHr(this.minCustomerPerHr, this.maxCustomerPerHr), this.avgPerCustomer));
+    }
+  },
+  render: function() {
+    this.cookiesPurchasedPerHr();
+    for (var i = 0; i < this.hoursOfOperation.length; i++) {
+      // create an element
+      var ulEl = document.createElement('ul');
+      console.log('ulEl is', ulEl);
+      // give the element content
+      ulEl.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
+      console.log('ulEl with content', ulEl);
+      // append the element to the dom
+      shopList.appendChild(ulEl);
+      // display daily total
+      // if(i === this.hoursOfOperation.length - 1) {
+      //   var ulEl = document.createElement('ul');
+      //   ulEl.textContent = 'Total: ' + this.recordOfSalesPerHour[i] + ' cookies';
+      //   ulEl.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
+      //   shopList.appendChild(ulEl);
+     // }
     }
   }
 };
@@ -121,16 +201,15 @@ var alki = {
       // give the element content
       ulEl.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
       console.log('ulEl with content', ulEl);
-      ulEl.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
-      console.log('ulEl with content', ulEl);
       // append the element to the dom
       shopList.appendChild(ulEl);
-      if(i === this.hoursOfOperation.length - 1) {
-        var ulEl = document.createElement('ul');
-        ulEl.textContent = 'Total: ' + this.recordOfSalesPerHour[i] + ' cookies';
-        ulEl.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
-        shopList.appendChild(ulEl);
-      }
+      // display daily total
+      // if(i === this.hoursOfOperation.length - 1) {
+      //   var ulEl = document.createElement('ul');
+      //   ulEl.textContent = 'Total: ' + this.recordOfSalesPerHour[i] + ' cookies';
+      //   ulEl.textContent = this.hoursOfOperation[i] + ': ' + this.recordOfSalesPerHour[i] + ' cookies';
+      //   shopList.appendChild(ulEl);
+     // }
     }
   }
 };
@@ -139,7 +218,6 @@ var alki = {
 
 var shops = [pike, seaTac, seattle, capHill, alki];
 
-// for (var i = 0; i < shops.length; i++) {
-//   // console.log(cats[i].nickname)
-//   cats[i].render()
-// }
+for (var i = 0; i < shops.length; i++) {
+  shops[i].render();
+}
