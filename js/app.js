@@ -117,7 +117,7 @@ function renderHourlyTotals() {
   var trEl = document.createElement('tr');
   // create, content, append for "Shop Location"
   var tdEl = document.createElement('td');
-  tdEl.textContent = '';
+  tdEl.textContent = 'Hourly Totals';
   trEl.appendChild(tdEl);
   // create, content, append for each hourly total
   for (var i = 0; i < hoursOfOperation.length; i++) {
