@@ -8,9 +8,11 @@ var allShops = [];
 // grabbing salesTable DOM element in sales.html
 var salesTable = document.getElementById('salesTable');
 
+// grabbing salesForm DOM element in sales.html
+var salesForm = document.getElementById('salesForm');
+
 // hard coding the hours of operation for all stores
 var hoursOfOperation = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
-
 
 var allShopsHourlyTotal = [];
 
@@ -46,10 +48,8 @@ function Shop(location, minCustomerPerHr, maxCustomerPerHr, avgCookiesPerCustome
     }
     return sumTotal;
   };
-
+ 
   this.render = function() {
-    this.cookiesPurchasedPerHr();
-    
     // make a tr
     var trEl = document.createElement('tr');
     // create, content, append for "Shop Location"
@@ -78,6 +78,12 @@ new Shop('Seattle Center', 11, 38, 3.7);
 new Shop('Capitol Hill', 20, 38, 2.3);
 new Shop('Alki', 2, 16, 4.6);
 
+function generateSalesData() {
+  for (var i = 0; i < allShops.length; i++) {
+    allShops[i].cookiesPurchasedPerHr();
+  }
+};
+
 function makeHeaderRow() {
   // create the row
   var trEl = document.createElement('tr');
@@ -100,6 +106,7 @@ function makeHeaderRow() {
 }
 
 function sumHourlyTotals(allShopsHourlyTotal) {
+  hourlyTotals = [];
   for (var i = 0; i < hoursOfOperation.length; i++) {
 	var hourlySum = 0;
     for (var j = 0; j < allShopsHourlyTotal.length; j++) {
@@ -144,7 +151,46 @@ function renderHourlyTotals() {
 }
 
 makeHeaderRow();
+generateSalesData();
 renderAllShops();
 sumHourlyTotals(allShopsHourlyTotal);
 renderHourlyTotals();
 
+// This function is the event handler for the submission of a new Salmon Cookie shop
+function handleNewShopSubmit(event) {
+
+  // prevents page reload on a 'submit' event
+  event.preventDefault();
+
+  // Validation to prevent empty form fields
+  if (!event.target.location.value || !event.target.minCustomer.value || !event.target.maxCustomer.value || !event.target.avgCookiesPerCustomer.value) {
+    return alert('Fields cannot be empty!');
+  }
+
+  var location = event.target.location.value;
+  var minCustomerPerHr = event.target.minCustomer.value;
+  var maxCustomerPerHr = event.target.maxCustomer.value;
+  var avgCookiesPerCustomer = parseFloat(event.target.avgCookiesPerCustomer.value);
+  
+  // create new shop from form inputs
+  new Shop(location, minCustomerPerHr, maxCustomerPerHr, avgCookiesPerCustomer);
+  
+  // generate sales data for new shop
+  allShops[allShops.length - 1].cookiesPurchasedPerHr();
+
+  // This empties the form fields after the data has been grabbed
+  event.target.location.value = null;
+  event.target.minCustomer.value = null;
+  event.target.maxCustomer.value = null;
+  event.target.avgCookiesPerCustomer.value = null;
+
+  salesTable.innerHTML = '';
+
+  makeHeaderRow();
+  renderAllShops();
+  sumHourlyTotals(allShopsHourlyTotal);
+  renderHourlyTotals();
+}
+
+// event listener for salesForm
+salesForm.addEventListener('submit', handleNewShopSubmit);
