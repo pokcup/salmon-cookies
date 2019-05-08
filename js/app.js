@@ -8,6 +8,10 @@ var salesTable = document.getElementById('salesTable');
 
 var hoursOfOperation = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
+var allShopsHourlyTotal = [];
+
+var hourlyTotals = [];
+
 // Pat's Salmon Cookies constructor function
 
 function Shop(location, minCustomerPerHr, maxCustomerPerHr, avgCookiesPerCustomer) {
@@ -21,9 +25,11 @@ function Shop(location, minCustomerPerHr, maxCustomerPerHr, avgCookiesPerCustome
   };
   this.cookiesPurchasedPerHr = function(customersPerHr, avgPerCustomer) {
     this.recordOfSalesPerHour = [];
+    var hourlyTotal = 0;
     for(var i = 0; i <= 14; i++) {
       this.recordOfSalesPerHour.push(Math.ceil(this.randomCustomersPerHr(this.minCustomerPerHr, this.maxCustomerPerHr), this.avgPerCustomer));
     }
+    allShopsHourlyTotal.push(this.recordOfSalesPerHour);
   };
   this.totalCookiesPerDay = function(hourlyArray) {
     var sumTotal = 0;
@@ -83,11 +89,40 @@ function makeHeaderRow() {
   salesTable.appendChild(trEl);
 }
 
+function sumHourlyTotals (allShopsHourlyTotal) {
+  for (var i = 0; i < hoursOfOperation.length; i++) {
+	var hourlySum = 0;
+    for (var j = 0; j < allShopsHourlyTotal.length; j++) {
+  	  hourlySum = hourlySum + allShopsHourlyTotal[j][i];
+    }
+    hourlyTotals.push(hourlySum);
+  }
+};
+
 function renderAllShops() {
   for (var i = 0; i < allShops.length; i++) {
     allShops[i].render();
   }
 }
 
+function renderHourlyTotals() {
+  var trEl = document.createElement('tr');
+  // create, content, append for "Shop Location"
+  var tdEl = document.createElement('td');
+  tdEl.textContent = '';
+  trEl.appendChild(tdEl);
+  // create, content, append for each hourly total
+  for (var i = 0; i < hoursOfOperation.length; i++) {
+    tdEl = document.createElement('td');
+    tdEl.textContent = hourlyTotals[i];
+    trEl.appendChild(tdEl);
+  }
+  // append the tr to the table
+  salesTable.appendChild(trEl);
+}
+
 makeHeaderRow();
 renderAllShops();
+sumHourlyTotals(allShopsHourlyTotal);
+renderHourlyTotals();
+
