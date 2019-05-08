@@ -2,35 +2,43 @@
 
 // JS for Salmon Cookies
 
+// will hold all the store object instances
 var allShops = [];
 
+// grabbing salesTable DOM element in sales.html
 var salesTable = document.getElementById('salesTable');
 
+// hard coding the hours of operation for all stores
 var hoursOfOperation = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+
 
 var allShopsHourlyTotal = [];
 
 var hourlyTotals = [];
 
 // Pat's Salmon Cookies constructor function
-
 function Shop(location, minCustomerPerHr, maxCustomerPerHr, avgCookiesPerCustomer) {
   this.location = location;
   this.minCustomerPerHr = minCustomerPerHr;
   this.maxCustomerPerHr = maxCustomerPerHr;
   this.avgCookiesPerCustomer = avgCookiesPerCustomer;
   this.recordOfSalesPerHour = [];
+
+  // returns a random number between min and max customers for each location inclusive of min and max number
   this.randomCustomersPerHr = function (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min; 
   };
-  this.cookiesPurchasedPerHr = function(customersPerHr, avgPerCustomer) {
+
+  // generating the recordOfSalesPerHour for each store
+  // pushing recordOfSalesPerHour for each store into allShopsHourlyTotal array creating an array of arrays
+  this.cookiesPurchasedPerHr = function() {
     this.recordOfSalesPerHour = [];
-    var hourlyTotal = 0;
-    for(var i = 0; i <= 14; i++) {
-      this.recordOfSalesPerHour.push(Math.ceil(this.randomCustomersPerHr(this.minCustomerPerHr, this.maxCustomerPerHr), this.avgPerCustomer));
+    for(var i = 0; i < hoursOfOperation.length; i++) {
+      this.recordOfSalesPerHour.push(Math.ceil(this.randomCustomersPerHr(this.minCustomerPerHr, this.maxCustomerPerHr) * this.avgCookiesPerCustomer));
     }
     allShopsHourlyTotal.push(this.recordOfSalesPerHour);
   };
+
   this.totalCookiesPerDay = function(hourlyArray) {
     var sumTotal = 0;
     for (var i = 0; i < hourlyArray.length; i++) {
@@ -38,8 +46,10 @@ function Shop(location, minCustomerPerHr, maxCustomerPerHr, avgCookiesPerCustome
     }
     return sumTotal;
   };
+
   this.render = function() {
-    this.cookiesPurchasedPerHr(this.randomCustomersPerHr(this.minCustomerPerHr, this.maxCustomerPerHr), this.avgPerCustomer);
+    this.cookiesPurchasedPerHr();
+    
     // make a tr
     var trEl = document.createElement('tr');
     // create, content, append for "Shop Location"
