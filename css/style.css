@@ -6,6 +6,7 @@
   th, td {
     padding: 7px 10px 10px 10px;}
   th {
+    background-color: gray;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-size: 90%;
@@ -17,5 +18,8 @@
   tr:hover {
     background-color: #c3e6e5;}
   #salesForm {
-    background-color: red;
+    background-color: black;
+  }
+  fieldset {
+    color: white;
   }
