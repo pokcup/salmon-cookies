@@ -28,7 +28,11 @@ function Shop(location, minCustomerPerHr, maxCustomerPerHr, avgCookiesPerCustome
 
   // returns a random number between min and max customers for each location inclusive of min and max number
   this.randomCustomersPerHr = function (min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min; 
+    var randomCust = Math.floor(Math.random() * ((this.maxCustomerPerHr - this.minCustomerPerHr) + 1)) + this.minCustomerPerHr;
+    console.log(this.minCustomerPerHr, this.maxCustomerPerHr, randomCust);
+    console.log(this.avgCookiesPerCustomer, randomCust, (randomCust * this.avgCookiesPerCustomer));
+    return randomCust;
+    // return Math.floor(Math.random() * ((this.maxCustomerPerHr - this.minCustomerPerHr) + 1)) + this.minCustomerPerHr; 
   };
 
   // generating the recordOfSalesPerHour for each store
@@ -36,7 +40,7 @@ function Shop(location, minCustomerPerHr, maxCustomerPerHr, avgCookiesPerCustome
   this.cookiesPurchasedPerHr = function() {
     this.recordOfSalesPerHour = [];
     for(var i = 0; i < hoursOfOperation.length; i++) {
-      this.recordOfSalesPerHour.push(Math.ceil(this.randomCustomersPerHr(this.minCustomerPerHr, this.maxCustomerPerHr) * this.avgCookiesPerCustomer));
+      this.recordOfSalesPerHour.push(Math.ceil(this.randomCustomersPerHr() * this.avgCookiesPerCustomer));
     }
     allShopsHourlyTotal.push(this.recordOfSalesPerHour);
   };
@@ -169,14 +173,19 @@ function handleNewShopSubmit(event) {
 
   var location = event.target.location.value;
   var minCustomerPerHr = event.target.minCustomer.value;
+  console.log('New shop min is: ' + minCustomerPerHr);
   var maxCustomerPerHr = event.target.maxCustomer.value;
+  console.log('New shop max is: ' + maxCustomerPerHr);
   var avgCookiesPerCustomer = parseFloat(event.target.avgCookiesPerCustomer.value);
+  console.log('New shop avg is: ' + avgCookiesPerCustomer);
   
   // create new shop from form inputs
   new Shop(location, minCustomerPerHr, maxCustomerPerHr, avgCookiesPerCustomer);
   
   // generate sales data for new shop
   allShops[allShops.length - 1].cookiesPurchasedPerHr();
+  console.log(allShops[allShops.length - 1]);
+  console.log(allShops[allShops.length - 1].recordOfSalesPerHour);
 
   // This empties the form fields after the data has been grabbed
   event.target.location.value = null;
