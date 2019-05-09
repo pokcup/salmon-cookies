@@ -31,16 +31,27 @@
   table tr td:last-child {
     background-color: gray;
   }
+  table tr td:first-child {
+    font-weight: bold;
+  }
   tr:last-child td:last-child{
     background-color: red;
     color: black;
     font-weight: bold;
   }
+  tr:last-child td:first-child{
+    font-weight: normal;
+  }
   #salesForm {
-    background-color: black;
+    background-color: gray;
   }
   fieldset {
     color: white;
     font-weight: bold;
     font-size: 90%;
   }
+  #submitAddNewShop {
+    background: yellow;
+    font-weight: bold;
+   }
+  
