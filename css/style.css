@@ -30,7 +30,7 @@
     color: white;
   }
   table tr td:last-child {
-    background-color: gray;
+    background-color: lightgray;
   }
   table tr td:first-child {
     font-weight: bold;
