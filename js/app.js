@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 // JS for Salmon Cookies
 
