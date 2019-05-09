@@ -30,7 +30,6 @@ function Shop(location, minCustomerPerHr, maxCustomerPerHr, avgCookiesPerCustome
   this.randomCustomersPerHr = function (min, max) {
     var randomCust = Math.floor(Math.random() * ((this.maxCustomerPerHr - this.minCustomerPerHr) + 1)) + this.minCustomerPerHr;
     return randomCust;
-    // return Math.floor(Math.random() * ((this.maxCustomerPerHr - this.minCustomerPerHr) + 1)) + this.minCustomerPerHr; 
   };
 
   // generating the recordOfSalesPerHour for each store
@@ -182,8 +181,6 @@ function handleNewShopSubmit(event) {
 
   // generate sales data for new shop
   allShops[allShops.length - 1].cookiesPurchasedPerHr();
-  console.log(allShops[allShops.length - 1]);
-  console.log(allShops[allShops.length - 1].recordOfSalesPerHour);
 
   // This empties the form fields after the data has been grabbed
   event.target.location.value = null;
