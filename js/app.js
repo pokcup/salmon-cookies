@@ -11,7 +11,6 @@ var salesTable = document.getElementById('salesTable');
 // hard coding the hours of operation for all stores
 var hoursOfOperation = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
-
 var allShopsHourlyTotal = [];
 
 var hourlyTotals = [];
@@ -49,26 +48,32 @@ function Shop(location, minCustomerPerHr, maxCustomerPerHr, avgCookiesPerCustome
 
   this.render = function() {
     this.cookiesPurchasedPerHr();
-    
+
     // make a tr
     var trEl = document.createElement('tr');
+
     // create, content, append for "Shop Location"
     var tdEl = document.createElement('td');
     tdEl.textContent = this.location;
     trEl.appendChild(tdEl);
+
     // create, content, append for each hourly total
     for (var i = 0; i < hoursOfOperation.length; i++) {
       tdEl = document.createElement('td');
       tdEl.textContent = this.recordOfSalesPerHour[i];
       trEl.appendChild(tdEl);
     }
+
     // create, content, append for daily total
     tdEl = document.createElement('td');
     tdEl.textContent = this.totalCookiesPerDay(this.recordOfSalesPerHour);
     trEl.appendChild(tdEl);
+
     // append the tr to the table
     salesTable.appendChild(trEl);
   };
+
+  // pushing store object to allShops array
   allShops.push(this);
 }
 
@@ -78,23 +83,29 @@ new Shop('Seattle Center', 11, 38, 3.7);
 new Shop('Capitol Hill', 20, 38, 2.3);
 new Shop('Alki', 2, 16, 4.6);
 
+// generates the header row of the table
 function makeHeaderRow() {
+
   // create the row
   var trEl = document.createElement('tr');
+
   // create, content, append first cell
   var thEl = document.createElement('th');
   thEl.textContent = 'Shop Location';
   trEl.appendChild(thEl);
+
   // create, content, append all hours of operation cells
   for (var i = 0; i < hoursOfOperation.length; i++) {
     thEl = document.createElement('th');
     thEl.textContent = hoursOfOperation[i];
     trEl.appendChild(thEl);
   }
+
   // create, content, append total sum cell
   thEl = document.createElement('th');
   thEl.textContent = 'Total';
   trEl.appendChild(thEl);
+
   // append the row to the table
   salesTable.appendChild(trEl);
 }
@@ -123,6 +134,7 @@ function renderAllShops() {
   }
 }
 
+// caluclates the hourly totals for all stores and renders to the DOM
 function renderHourlyTotals() {
   var trEl = document.createElement('tr');
   // create, content, append for "Shop Location"
