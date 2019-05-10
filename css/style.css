@@ -46,6 +46,9 @@
   #salesForm {
     background-color: gray;
   }
+  #salesFormDelete {
+    background-color: gray;
+  }
   fieldset {
     color: white;
     font-weight: bold;
@@ -55,4 +58,8 @@
     background: yellow;
     font-weight: bold;
    }
+#submitDeleteShop {
+  background: yellow;
+  font-weight: bold;
+ }
   

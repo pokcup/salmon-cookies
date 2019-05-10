@@ -11,6 +11,9 @@ var salesTable = document.getElementById('salesTable');
 // grabbing salesForm DOM element in sales.html
 var salesForm = document.getElementById('salesForm');
 
+// grabbing salesFormDelete DOM element in sales.html
+var salesFormDelete = document.getElementById('salesFormDelete');
+
 // hard coding the hours of operation for all stores
 var hoursOfOperation = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
@@ -38,13 +41,16 @@ function Shop(location, minCustomerPerHr, maxCustomerPerHr, avgCookiesPerCustome
     this.recordOfSalesPerHour = [];
     for(var i = 0; i < hoursOfOperation.length; i++) {
       this.recordOfSalesPerHour.push(Math.ceil(this.randomCustomersPerHr() * this.avgCookiesPerCustomer));
+      if(i === (hoursOfOperation.length - 1)) {
+        this.recordOfSalesPerHour.push(this.location);
+      }
     }
     allShopsHourlyTotal.push(this.recordOfSalesPerHour);
   };
 
   this.totalCookiesPerDay = function(hourlyArray) {
     var sumTotal = 0;
-    for (var i = 0; i < hourlyArray.length; i++) {
+    for (var i = 0; i < (hourlyArray.length - 1); i++) {
       sumTotal += hourlyArray[i];
     }
     return sumTotal;
@@ -196,5 +202,50 @@ function handleNewShopSubmit(event) {
   renderHourlyTotals();
 }
 
+// This function is the event handler for the submission of a form to delete a Salmon Cookie shop by location name
+function handleDeleteShopSubmit(event) {
+
+  // prevents page reload on a 'submit' event
+  event.preventDefault();
+
+  var locationToDelete = event.target.locationToDelete.value;
+  console.log('Location to delete in variable locationToDelete is ' + locationToDelete);
+
+  var validLocation = false;
+  console.log(validLocation);
+
+  // locate shop to be deleted in allShops array and remove from array. If shop does not exist in array then prompt user for a valid location name to delete
+  for (var i = 0; i < allShops.length; i++) {
+    if (allShops[i].location === locationToDelete) {
+      allShops.splice(i, 1);
+      validLocation = true;
+      console.log(validLocation);
+      if (validLocation === true) {
+        for (var i = 0; i < allShopsHourlyTotal.length; i++) {
+          if (allShopsHourlyTotal[i][hoursOfOperation.length] === locationToDelete) {
+            allShopsHourlyTotal.splice(i, 1);
+          }
+        }
+      }
+    }
+  }
+
+  if (validLocation === false) {
+    event.target.locationToDelete.value = null;
+    return alert('Location name must be entered exactly as shown in Shop Location column of Sales Data. You entered ' + locationToDelete);
+  }
+
+  // This empties the form fields after the data has been grabbed
+  event.target.locationToDelete.value = null;
+
+  salesTable.innerHTML = '';
+
+  makeHeaderRow();
+  renderAllShops();
+  sumHourlyTotals(allShopsHourlyTotal);
+  renderHourlyTotals();
+}
+
 // event listener for salesForm
 salesForm.addEventListener('submit', handleNewShopSubmit);
+salesFormDelete.addEventListener('submit', handleDeleteShopSubmit);

@@ -16,7 +16,7 @@
   <br>
   <form id="salesForm">
     <fieldset>
-      <legend id='salesFormLegend'>Edit Sales Report</legend>
+      <legend id='salesFormLegend'>Add New Shop</legend>
 
       <input name="location" type="text" size="20" placeholder="Shop Location" required />
 
@@ -27,6 +27,17 @@
       <input name="avgCookiesPerCustomer" type="text" size="25" placeholder="Avg cookies per customer" required />
 
       <button id="submitAddNewShop" type="submit">Add New Shop</button>
+    </fieldset>
+  </form>
+  <br>
+  <br>
+  <form id="salesFormDelete">
+    <fieldset>
+      <legend id='salesFormLegend'>Delete Shop</legend>
+
+      <input name="locationToDelete" type="text" size="20" placeholder="Shop Location" />
+
+      <button id="submitDeleteShop" type="submit">Delete Shop</button>
     </fieldset>
   </form>
 
