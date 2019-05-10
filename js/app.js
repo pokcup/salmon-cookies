@@ -36,7 +36,7 @@ function Shop(location, minCustomerPerHr, maxCustomerPerHr, avgCookiesPerCustome
   };
 
   // generating the recordOfSalesPerHour for each store
-  // pushing recordOfSalesPerHour for each store into allShopsHourlyTotal array creating an array of arrays
+  // pushing recordOfSalesPerHour for each store into allShopsHourlyTotal array creating an array of arrays and adding the location name at the end
   this.cookiesPurchasedPerHr = function() {
     this.recordOfSalesPerHour = [];
     for(var i = 0; i < hoursOfOperation.length; i++) {
@@ -212,14 +212,12 @@ function handleDeleteShopSubmit(event) {
   console.log('Location to delete in variable locationToDelete is ' + locationToDelete);
 
   var validLocation = false;
-  console.log(validLocation);
 
   // locate shop to be deleted in allShops array and remove from array. If shop does not exist in array then prompt user for a valid location name to delete
   for (var i = 0; i < allShops.length; i++) {
     if (allShops[i].location === locationToDelete) {
       allShops.splice(i, 1);
       validLocation = true;
-      console.log(validLocation);
       if (validLocation === true) {
         for (var i = 0; i < allShopsHourlyTotal.length; i++) {
           if (allShopsHourlyTotal[i][hoursOfOperation.length] === locationToDelete) {
