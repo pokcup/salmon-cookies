@@ -59,23 +59,29 @@ function Shop(location, minCustomerPerHr, maxCustomerPerHr, avgCookiesPerCustome
   this.render = function() {
     // make a tr
     var trEl = document.createElement('tr');
+
     // create, content, append for "Shop Location"
     var tdEl = document.createElement('td');
     tdEl.textContent = this.location;
     trEl.appendChild(tdEl);
+
     // create, content, append for each hourly total
     for (var i = 0; i < hoursOfOperation.length; i++) {
       tdEl = document.createElement('td');
       tdEl.textContent = this.recordOfSalesPerHour[i];
       trEl.appendChild(tdEl);
     }
+
     // create, content, append for daily total
     tdEl = document.createElement('td');
     tdEl.textContent = this.totalCookiesPerDay(this.recordOfSalesPerHour);
     trEl.appendChild(tdEl);
+
     // append the tr to the table
     salesTable.appendChild(trEl);
   };
+
+  // pushing store object to allShops array
   allShops.push(this);
 }
 
@@ -92,22 +98,27 @@ function generateSalesData() {
 };
 
 function makeHeaderRow() {
+
   // create the row
   var trEl = document.createElement('tr');
+
   // create, content, append first cell
   var thEl = document.createElement('th');
   thEl.textContent = 'Shop Location';
   trEl.appendChild(thEl);
+
   // create, content, append all hours of operation cells
   for (var i = 0; i < hoursOfOperation.length; i++) {
     thEl = document.createElement('th');
     thEl.textContent = hoursOfOperation[i];
     trEl.appendChild(thEl);
   }
+
   // create, content, append total sum cell
   thEl = document.createElement('th');
   thEl.textContent = 'Total';
   trEl.appendChild(thEl);
+
   // append the row to the table
   salesTable.appendChild(trEl);
 }
@@ -137,6 +148,7 @@ function renderAllShops() {
   }
 }
 
+// caluclates the hourly totals for all stores and renders to the DOM
 function renderHourlyTotals() {
   var trEl = document.createElement('tr');
   // create, content, append for "Shop Location"
