@@ -114,14 +114,15 @@ function makeHeaderRow() {
 }
 
 function sumHourlyTotals(allShopsHourlyTotal) {
+  hourlyTotals = [];
   for (var i = 0; i < hoursOfOperation.length; i++) {
-	var hourlySum = 0;
+    var hourlySum = 0;
     for (var j = 0; j < allShopsHourlyTotal.length; j++) {
-  	  hourlySum = hourlySum + allShopsHourlyTotal[j][i];
+      hourlySum = hourlySum + allShopsHourlyTotal[j][i];
     }
     hourlyTotals.push(hourlySum);
   }
-};
+}
 
 function totalOfAllTotals() {
   var sumTotal = 0;
@@ -129,7 +130,7 @@ function totalOfAllTotals() {
     sumTotal += hourlyTotals[i];
   }
   return sumTotal;
-};
+}
 
 function renderAllShops() {
   for (var i = 0; i < allShops.length; i++) {
@@ -158,6 +159,7 @@ function renderHourlyTotals() {
   salesTable.appendChild(trEl);
 }
 
+generateSalesData();
 makeHeaderRow();
 renderAllShops();
 sumHourlyTotals(allShopsHourlyTotal);
