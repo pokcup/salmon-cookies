@@ -29,6 +29,62 @@ function Shop(location, minCustomerPerHr, maxCustomerPerHr, avgCookiesPerCustome
   this.avgCookiesPerCustomer = avgCookiesPerCustomer;
   this.recordOfSalesPerHour = [];
 
+<<<<<<< HEAD
+=======
+  // returns a random number between min and max customers for each location inclusive of min and max number
+  this.randomCustomersPerHr = function (min, max) {
+    var randomCust = Math.floor(Math.random() * ((this.maxCustomerPerHr - this.minCustomerPerHr) + 1)) + this.minCustomerPerHr;
+    return randomCust;
+  };
+
+  // generating the recordOfSalesPerHour for each store
+  // pushing recordOfSalesPerHour for each store into allShopsHourlyTotal array creating an array of arrays and adding the location name at the end
+  this.cookiesPurchasedPerHr = function() {
+    this.recordOfSalesPerHour = [];
+    for(var i = 0; i < hoursOfOperation.length; i++) {
+      this.recordOfSalesPerHour.push(Math.ceil(this.randomCustomersPerHr() * this.avgCookiesPerCustomer));
+      if(i === (hoursOfOperation.length - 1)) {
+        this.recordOfSalesPerHour.push(this.location);
+      }
+    }
+    allShopsHourlyTotal.push(this.recordOfSalesPerHour);
+  };
+
+  this.totalCookiesPerDay = function(hourlyArray) {
+    var sumTotal = 0;
+    for (var i = 0; i < (hourlyArray.length - 1); i++) {
+      sumTotal += hourlyArray[i];
+    }
+    return sumTotal;
+  };
+ 
+  this.render = function() {
+    // make a tr
+    var trEl = document.createElement('tr');
+
+    // create, content, append for "Shop Location"
+    var tdEl = document.createElement('td');
+    tdEl.textContent = this.location;
+    trEl.appendChild(tdEl);
+
+    // create, content, append for each hourly total
+    for (var i = 0; i < hoursOfOperation.length; i++) {
+      tdEl = document.createElement('td');
+      tdEl.textContent = this.recordOfSalesPerHour[i];
+      trEl.appendChild(tdEl);
+    }
+
+    // create, content, append for daily total
+    tdEl = document.createElement('td');
+    tdEl.textContent = this.totalCookiesPerDay(this.recordOfSalesPerHour);
+    trEl.appendChild(tdEl);
+
+    // append the tr to the table
+    salesTable.appendChild(trEl);
+  };
+
+  // pushing store object to allShops array
+>>>>>>> 5f36eb468368086467ab850b4c066e49e90a5635
   allShops.push(this);
 }
 
@@ -93,22 +149,27 @@ function generateSalesData() {
 };
 
 function makeHeaderRow() {
+
   // create the row
   var trEl = document.createElement('tr');
+
   // create, content, append first cell
   var thEl = document.createElement('th');
   thEl.textContent = 'Shop Location';
   trEl.appendChild(thEl);
+
   // create, content, append all hours of operation cells
   for (var i = 0; i < hoursOfOperation.length; i++) {
     thEl = document.createElement('th');
     thEl.textContent = hoursOfOperation[i];
     trEl.appendChild(thEl);
   }
+
   // create, content, append total sum cell
   thEl = document.createElement('th');
   thEl.textContent = 'Total';
   trEl.appendChild(thEl);
+
   // append the row to the table
   salesTable.appendChild(trEl);
 }
@@ -138,6 +199,7 @@ function renderAllShops() {
   }
 }
 
+// caluclates the hourly totals for all stores and renders to the DOM
 function renderHourlyTotals() {
   var trEl = document.createElement('tr');
   // create, content, append for "Shop Location"
