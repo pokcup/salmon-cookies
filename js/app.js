@@ -23,57 +23,6 @@ function Shop(location, minCustomerPerHr, maxCustomerPerHr, avgCookiesPerCustome
   this.avgCookiesPerCustomer = avgCookiesPerCustomer;
   this.recordOfSalesPerHour = [];
 
-  // returns a random number between min and max customers for each location inclusive of min and max number
-  this.randomCustomersPerHr = function (min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min; 
-  };
-
-  // generating the recordOfSalesPerHour for each store
-  // pushing recordOfSalesPerHour for each store into allShopsHourlyTotal array creating an array of arrays
-  this.cookiesPurchasedPerHr = function() {
-    this.recordOfSalesPerHour = [];
-    for(var i = 0; i < hoursOfOperation.length; i++) {
-      this.recordOfSalesPerHour.push(Math.ceil(this.randomCustomersPerHr(this.minCustomerPerHr, this.maxCustomerPerHr) * this.avgCookiesPerCustomer));
-    }
-    allShopsHourlyTotal.push(this.recordOfSalesPerHour);
-  };
-
-  this.totalCookiesPerDay = function(hourlyArray) {
-    var sumTotal = 0;
-    for (var i = 0; i < hourlyArray.length; i++) {
-      sumTotal += hourlyArray[i];
-    }
-    return sumTotal;
-  };
-
-  this.render = function() {
-    this.cookiesPurchasedPerHr();
-
-    // make a tr
-    var trEl = document.createElement('tr');
-
-    // create, content, append for "Shop Location"
-    var tdEl = document.createElement('td');
-    tdEl.textContent = this.location;
-    trEl.appendChild(tdEl);
-
-    // create, content, append for each hourly total
-    for (var i = 0; i < hoursOfOperation.length; i++) {
-      tdEl = document.createElement('td');
-      tdEl.textContent = this.recordOfSalesPerHour[i];
-      trEl.appendChild(tdEl);
-    }
-
-    // create, content, append for daily total
-    tdEl = document.createElement('td');
-    tdEl.textContent = this.totalCookiesPerDay(this.recordOfSalesPerHour);
-    trEl.appendChild(tdEl);
-
-    // append the tr to the table
-    salesTable.appendChild(trEl);
-  };
-
-  // pushing store object to allShops array
   allShops.push(this);
 }
 
@@ -82,6 +31,60 @@ new Shop('SeaTac Airport', 3, 24, 1.2);
 new Shop('Seattle Center', 11, 38, 3.7);
 new Shop('Capitol Hill', 20, 38, 2.3);
 new Shop('Alki', 2, 16, 4.6);
+
+// returns a random number between min and max customers for each location inclusive of min and max number
+Shop.prototype.randomCustomersPerHr = function(min, max) {
+  var randomCust = Math.floor(Math.random() * ((this.maxCustomerPerHr - this.minCustomerPerHr) + 1)) + this.minCustomerPerHr;
+  return randomCust;
+};
+
+// generating the recordOfSalesPerHour for each store
+// pushing recordOfSalesPerHour for each store into allShopsHourlyTotal array creating an array of arrays and adding the location name at the end
+Shop.prototype.cookiesPurchasedPerHr = function() {
+  this.recordOfSalesPerHour = [];
+  for(var i = 0; i < hoursOfOperation.length; i++) {
+    this.recordOfSalesPerHour.push(Math.ceil(this.randomCustomersPerHr() * this.avgCookiesPerCustomer));
+    if(i === (hoursOfOperation.length - 1)) {
+      this.recordOfSalesPerHour.push(this.location);
+    }
+  }
+  allShopsHourlyTotal.push(this.recordOfSalesPerHour);
+};
+
+Shop.prototype.totalCookiesPerDay = function(hourlyArray) {
+  var sumTotal = 0;
+  for (var i = 0; i < (hourlyArray.length - 1); i++) {
+    sumTotal += hourlyArray[i];
+  }
+  return sumTotal;
+};
+
+Shop.prototype.render = function() {
+  // make a tr
+  var trEl = document.createElement('tr');
+  // create, content, append for "Shop Location"
+  var tdEl = document.createElement('td');
+  tdEl.textContent = this.location;
+  trEl.appendChild(tdEl);
+  // create, content, append for each hourly total
+  for (var i = 0; i < hoursOfOperation.length; i++) {
+    tdEl = document.createElement('td');
+    tdEl.textContent = this.recordOfSalesPerHour[i];
+    trEl.appendChild(tdEl);
+  }
+  // create, content, append for daily total
+  tdEl = document.createElement('td');
+  tdEl.textContent = this.totalCookiesPerDay(this.recordOfSalesPerHour);
+  trEl.appendChild(tdEl);
+  // append the tr to the table
+  salesTable.appendChild(trEl);
+};
+
+function generateSalesData() {
+  for (var i = 0; i < allShops.length; i++) {
+    allShops[i].cookiesPurchasedPerHr();
+  }
+};
 
 // generates the header row of the table
 function makeHeaderRow() {
