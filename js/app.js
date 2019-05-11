@@ -163,3 +163,88 @@ renderAllShops();
 sumHourlyTotals(allShopsHourlyTotal);
 renderHourlyTotals();
 
+// This function is the event handler for the submission of a new Salmon Cookie shop
+function handleNewShopSubmit(event) {
+
+  // prevents page reload on a 'submit' event
+  event.preventDefault();
+
+  // Validation to prevent empty form fields
+  if (!event.target.location.value || !event.target.minCustomer.value || !event.target.maxCustomer.value || !event.target.avgCookiesPerCustomer.value) {
+    return alert('Fields cannot be empty!');
+  }
+
+  var location = event.target.location.value;
+  var minCustomerPerHr = parseInt(event.target.minCustomer.value);
+  console.log('New shop min is: ' + minCustomerPerHr);
+  var maxCustomerPerHr = parseInt(event.target.maxCustomer.value);
+  console.log('New shop max is: ' + maxCustomerPerHr);
+  var avgCookiesPerCustomer = parseFloat(event.target.avgCookiesPerCustomer.value);
+  console.log('New shop avg is: ' + avgCookiesPerCustomer);
+
+  // create new shop from form inputs
+  new Shop(location, minCustomerPerHr, maxCustomerPerHr, avgCookiesPerCustomer);
+
+  // generate sales data for new shop
+  allShops[allShops.length - 1].cookiesPurchasedPerHr();
+
+  // This empties the form fields after the data has been grabbed
+  event.target.location.value = null;
+  event.target.minCustomer.value = null;
+  event.target.maxCustomer.value = null;
+  event.target.avgCookiesPerCustomer.value = null;
+
+  salesTable.innerHTML = '';
+
+  makeHeaderRow();
+  renderAllShops();
+  sumHourlyTotals(allShopsHourlyTotal);
+  renderHourlyTotals();
+}
+
+// This function is the event handler for the submission of a form to delete a Salmon Cookie shop by location name
+function handleDeleteShopSubmit(event) {
+
+  // prevents page reload on a 'submit' event
+  event.preventDefault();
+
+  var locationToDelete = event.target.locationToDelete.value;
+  console.log('Location to delete in variable locationToDelete is ' + locationToDelete);
+
+  var validLocation = false;
+
+  // locate shop to be deleted in allShops array and remove from array. If shop does not exist in array then prompt user for a valid location name to delete
+  for (var i = 0; i < allShops.length; i++) {
+    if (allShops[i].location === locationToDelete) {
+      allShops.splice(i, 1);
+      validLocation = true;
+      if (validLocation === true) {
+        for (var i = 0; i < allShopsHourlyTotal.length; i++) {
+          if (allShopsHourlyTotal[i][hoursOfOperation.length] === locationToDelete) {
+            allShopsHourlyTotal.splice(i, 1);
+          }
+        }
+      }
+    }
+  }
+
+  if (validLocation === false) {
+    event.target.locationToDelete.value = null;
+    return alert('Location name must be entered exactly as shown in Shop Location column of Sales Data. You entered ' + locationToDelete);
+  }
+
+  // This empties the form fields after the data has been grabbed
+  event.target.locationToDelete.value = null;
+
+  // clear the entire table of data
+  salesTable.innerHTML = '';
+
+  makeHeaderRow();
+  renderAllShops();
+  sumHourlyTotals(allShopsHourlyTotal);
+  renderHourlyTotals();
+}
+
+// event listener for salesForm
+salesForm.addEventListener('submit', handleNewShopSubmit);
+salesFormDelete.addEventListener('submit', handleDeleteShopSubmit);
