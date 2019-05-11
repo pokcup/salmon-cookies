@@ -237,6 +237,7 @@ function handleDeleteShopSubmit(event) {
   // This empties the form fields after the data has been grabbed
   event.target.locationToDelete.value = null;
 
+  // clear the entire table of data
   salesTable.innerHTML = '';
 
   makeHeaderRow();
