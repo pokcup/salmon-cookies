@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 // JS for Salmon Cookies
 
@@ -7,12 +7,6 @@ var allShops = [];
 
 // grabbing salesTable DOM element in sales.html
 var salesTable = document.getElementById('salesTable');
-
-// grabbing salesForm DOM element in sales.html
-var salesForm = document.getElementById('salesForm');
-
-// grabbing salesFormDelete DOM element in sales.html
-var salesFormDelete = document.getElementById('salesFormDelete');
 
 // hard coding the hours of operation for all stores
 var hoursOfOperation = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
@@ -92,29 +86,34 @@ function generateSalesData() {
   }
 };
 
+// generates the header row of the table
 function makeHeaderRow() {
+
   // create the row
   var trEl = document.createElement('tr');
+
   // create, content, append first cell
   var thEl = document.createElement('th');
   thEl.textContent = 'Shop Location';
   trEl.appendChild(thEl);
+
   // create, content, append all hours of operation cells
   for (var i = 0; i < hoursOfOperation.length; i++) {
     thEl = document.createElement('th');
     thEl.textContent = hoursOfOperation[i];
     trEl.appendChild(thEl);
   }
+
   // create, content, append total sum cell
   thEl = document.createElement('th');
   thEl.textContent = 'Total';
   trEl.appendChild(thEl);
+
   // append the row to the table
   salesTable.appendChild(trEl);
 }
 
 function sumHourlyTotals(allShopsHourlyTotal) {
-  hourlyTotals = [];
   for (var i = 0; i < hoursOfOperation.length; i++) {
 	var hourlySum = 0;
     for (var j = 0; j < allShopsHourlyTotal.length; j++) {
@@ -138,6 +137,7 @@ function renderAllShops() {
   }
 }
 
+// caluclates the hourly totals for all stores and renders to the DOM
 function renderHourlyTotals() {
   var trEl = document.createElement('tr');
   // create, content, append for "Shop Location"
@@ -159,7 +159,6 @@ function renderHourlyTotals() {
 }
 
 makeHeaderRow();
-generateSalesData();
 renderAllShops();
 sumHourlyTotals(allShopsHourlyTotal);
 renderHourlyTotals();
