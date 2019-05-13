@@ -124,6 +124,7 @@ function sumHourlyTotals(allShopsHourlyTotal) {
   }
 }
 
+// sums alls hourly totals for each shop location and returns the sum total
 function totalOfAllTotals() {
   var sumTotal = 0;
   for (var i = 0; i < hourlyTotals.length; i++) {
